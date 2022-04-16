@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Legitimacy using ML</title>
+    <style>
+	 body{
+	    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaO30sxPALvtEzbblCkeIgmb2fqp-4vGo8Jg&usqp=CAU');
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
+		}
+		
+    nav {
+		display: flex;
+		flex-direction: row;
+		background-color:rgb(0, 48, 194);
+		height: 60px;
+		justify-content: space-between;
+		align-items: stretch;
+		font-size: 1.2em;
+		}
+	 
+	#heading-logo {
+		display: flex;
+		flex-direction: row;
+		margin-left: 45%;
+		color: rgb(248, 244, 244);
+		justify-content: center;
+		align-items: center;
+		}
+	
+
+	.menu-heading {
+		float: right;
+		color: rgb(248, 244, 244);
+		margin-right: 150px;
+		}
+	h1{
+      margin-left:auto;
+	  margin-right:auto;
+	  text-align:center;
+	 }
+	 .button {
+	  padding: 15px 25px;
+	  font-size: 24px;
+	  text-align: center;
+	  cursor: pointer;
+	  outline: none;
+	  color: #fff;
+	  background-color: #04AA6D;
+	  border: none;
+	  border-radius: 15px;
+	  box-shadow: 0 9px #999;
+	}
+
+	.button:hover {background-color: #3e8e41}
+	.button:active {
+		background-color: #3e8e41;
+		box-shadow: 0 5px #666;
+		transform: translateY(4px);
+		}
+	 
+	 .file-upload
+		{display:block;text-align:center;font-family: Helvetica, Arial, sans-serif;font-size: 12px;margin-right:auto;margin-left:auto;}
+		.file-upload .file-select
+		{display:block;border: 2px solid #dce4ec;color: #34495e;cursor:pointer;height:40px;line-height:40px;text-align:left;background:#FFFFFF;overflow:hidden;position:relative;}
+		.file-upload .file-select .file-select-button
+		{background:#dce4ec;padding:0 10px;display:inline-block;height:40px;line-height:40px;}
+		.file-upload .file-select .file-select-name
+		{line-height:40px;display:inline-block;padding:0 10px;}
+		.file-upload .file-select:hover
+		{border-color:#34495e;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
+		.file-upload .file-select:hover .file-select-button
+		{background:#34495e;color:#FFFFFF;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
+		.file-upload.active .file-select
+		{border-color:#3fa46a;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
+		.file-upload.active .file-select .file-select-button
+		{background:#3fa46a;color:#FFFFFF;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
+		.file-upload .file-select input[type=file]
+		{z-index:100;cursor:pointer;position:absolute;height:100%;width:100%;top:0;left:0;opacity:0;filter:alpha(opacity=0);}
+		.file-upload .file-select.file-select-disabled{opacity:0.65;}
+		.file-upload .file-select.file-select-disabled:hover
+		{cursor:default;display:block;border: 2px solid #dce4ec;color: #34495e;cursor:pointer;height:40px;line-height:40px;margin-top:5px;text-align:left;background:#FFFFFF;overflow:hidden;position:relative;}
+		.file-upload .file-select.file-select-disabled:hover .file-select-button
+		{background:#dce4ec;color:#666666;padding:0 10px;display:inline-block;height:40px;line-height:40px;}
+		.file-upload .file-select.file-select-disabled:hover .file-select-name
+		{line-height:40px;display:inline-block;padding:0 10px;}
+
+    </style>  
+
+	<script>
+   function display()
+	{   
+       document.getElementById("noFile").innerHTML="Selected File: "+document.getElementById("chooseFile").value;
+	 }
+	</script>
+</head>
+
+<body>
+    <nav>
+        <div id="heading-logo">
+            <h1>Data Legitimacy</h1>
+           
+        </div>
+        <a href="index.html"><p class="menu-heading">Menu</p></a>
+    </nav>
+	<h2>Select a file to upload</h2>
+		<p>
+		{% with messages = get_flashed_messages() %}
+		  {% if messages %}
+			<ul>
+			{% for message in messages %}
+			  <li>{{ message }}</li>
+			{% endfor %}
+			</ul>
+		  {% endif %}
+		{% endwith %}
+	</p>
+
+	<form method="post" action="/upload" enctype="multipart/form-data">
+	<div class="file-upload">
+	<div class="file-select">
+    <div class="file-select-button" id="fileName">Choose File</div>
+    <div class="file-select-name" id="noFile">No file chosen...</div> 
+    <input class="btn" type="file" name="file" id="chooseFile" onchange="display()" autocomplete="off" required>
+	
+  </div>
+</div>
+		<p>
+			<input class="button" type="submit" value="Submit">
+		</p>
+
+	</form>
+	</body>
+</html>
